@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "mystats <- function(x, na.omit=FALSE){\n  if (na.omit)\n    x <- x[!is.na(x)]\n  m <- mean(x)\n  n <- length(x)\n  s <- sd(x)\n  skew <- sum((x-m)^3/s^3)/n\n  kurt <- sum((x-m)^4/s^4)/n - 3\n  \n  return (c(n=n, mean=n, stdev=s, skew=skew, kurtosis=kurt))\n}",
+    "created" : 1469066565763.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1859963620",
+    "id" : "5F39D96A",
+    "lastKnownWriteTime" : 1469066711,
+    "last_content_update" : 1469066711656,
+    "path" : "~/R in action/R-practice/skew_kurt_func.R",
+    "project_path" : "skew_kurt_func.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

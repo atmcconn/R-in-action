@@ -1,0 +1,20 @@
+
+
+## Create a remote repository on Github first
+
+## Afterwords, create the directory of the same name in your local directory
+
+## Initialize; Connect your local to the remote; Then you can push/pull
+
+git init
+git remote add origin <URLFROMGITHUB>
+
+## git remote set-url origin <URLFROMGITHUB>   if using windows
+git push origin master
+git push <REMOTENAME> <BRANCH>
+
+## to pull
+git pull <REMOTENAME> <BRANCHNAME>
+
+# View remote connections
+git remote -v
