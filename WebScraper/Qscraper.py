@@ -21,8 +21,8 @@ def format_table(my_table):
     header = [each.text for each in header_links]
     header = remove_elements(header, '')
     list_of_rows.append(header)
-    # Skips the first tag which is the header <tr><th> to be written later, and a bunch of other junk I don't need
 
+    # Skips the first two tag which is the header <tr><th> to be written later, and a bunch of other junk I don't need
     for row in my_table.find_all('tr')[2:]:
         list_of_cells = []
         for cell in row.find_all('td'):
@@ -32,8 +32,8 @@ def format_table(my_table):
     return list_of_rows
 
 
-def write_to_csv(a_list):
-    data_file = open("All Movies - %s Domestic Grosses.csv" % "2010", 'w')
+def write_to_csv(a_list, year):
+    data_file = open("All Movies - %s Domestic Grosses.csv" % year, 'w')
     for each_list in a_list:
         writer = csv.writer(data_file)
         writer.writerows(each_list)
@@ -46,19 +46,18 @@ def get_html_page(url, parameters):
 
 
 if __name__ == "__main__":
-
+    year = 2015
     url = 'http://www.boxofficemojo.com/yearly/chart/'
     format_data_as_list = []
-    for i in range(1, 7):
-        paramsDict = {'page': i, 'yr': 2010, 'view': 'releasedate', 'view2': 'domestic'}
+	
+    for i in range(1, 8):
+        paramsDict = {'page': i, 'yr': year, 'view': 'releasedate', 'view2': 'domestic'}
         soup = get_html_page(url, paramsDict)
-
-        # based on tree, I need div id='body'
-        # body = soup.find('div', attrs={'id':'body'})  ## Not being used right now
 
         # !!!! Seems to be the only way to get the data I need!!!
         my_data = soup.find('table', attrs={"bgcolor": "#ffffff"})
 
         format_data_as_list.append(format_table(my_data))
-	write_to_csv(format_data_as_list)
+		
+	write_to_csv(format_data_as_list, year)
     print "Success"
