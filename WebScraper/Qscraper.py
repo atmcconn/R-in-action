@@ -49,7 +49,10 @@ if __name__ == "__main__":
     year = 2015
     url = 'http://www.boxofficemojo.com/yearly/chart/'
     format_data_as_list = []
-	
+	#
+	#soup.center
+	#num_pages = soup.center.find_all('a')
+	#new_length = num_pages + 1
     for i in range(1, 8):
         paramsDict = {'page': i, 'yr': year, 'view': 'releasedate', 'view2': 'domestic'}
         soup = get_html_page(url, paramsDict)
