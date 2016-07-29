@@ -4,5 +4,19 @@ movies2010 <- read.table("All Movies - 2010 Domestic Grosses.csv", sep=",", head
 
 allMovies <- read.table("All Movies Domestic Grosses - formatted.csv", sep=",", header=T, quote="\"", na.strings=c("-", "N/A"))
 
+# Gets rid of '$' in front
+newX <- substr(x, 2, nchar(x))  
 
-newX <- substr(x, 2, nchar(x))  # Gets rid of '$' in front
+## This helps converts Total.Gross factors into continuous numbers
+> ridofDollar <- lapply(formatted, function(x){substr(x, 2, nchar(x))})
+> Total.Gross.formatted <- lapply(ridofDollar, function(x){sub(",", "", x)})
+> Total.Gross.formatted <- lapply(ridofDollar, function(x){sub(",", "", x)})
+> Total.Gross.formatted <- lapply(Total.Gross.formatted, function(x){sub(",", "", x)})
+> Total.Gross.formatted <- lapply(Total.Gross.formatted, function(x){as.numeric(x)})
+
+## To get the mean:
+finally <- c()
+
+for (i in c(1:length(newV))) finally <- c(finally, newV[[i]])
+mean(finally)
+
