@@ -14,23 +14,22 @@ def remove_elements(a_list, elem):
 
 # It should be noticed that for these particular webpages, the header variable names can be extracted from the links
 # that they are embedded in. All other data values are found within a table with specific bg values.
-def format_header(my_table):
+def format_table(my_table):
+    list_of_rows = []
     header_table = my_table.find_all('tr')[0]
     header_links = header_table.find_all('a')
     header = [each.text for each in header_links]
     header = remove_elements(header, '')
-    return [header]
+    header.append('')
+    list_of_rows.append(header)
 
-# It should be noticed that for these particular webpages, the header variable names can be extracted from the links
-# that they are embedded in. All other data values are found within a table with specific bg values.
-def format_table(my_table):
-    list_of_rows = []
     # Skips the first two tag which is the header <tr><th> to be written later, and a bunch of other junk I don't need
     for row in my_table.find_all('tr')[2:]:
         list_of_cells = []
         for cell in row.find_all('td'):
             text = cell.text.replace('&nbsp', '')
             list_of_cells.append(text.encode('ascii', 'replace'))
+        list_of_cells.append('')
         list_of_rows.append(list_of_cells)
     return list_of_rows
 
@@ -49,20 +48,21 @@ def get_html_page(url, parameters):
 
 
 if __name__ == "__main__":
+
     url = 'http://www.boxofficemojo.com/yearly/chart/'
     format_data_as_list = []
     year = 2010
     paramsDict = {'yr': year, 'view': 'releasedate', 'view2': 'domestic'}
 
     soup = get_html_page(url, paramsDict)
+    my_data = soup.find('table', attrs={"bgcolor": "#ffffff"})
+    format_data_as_list.append(format_table(my_data))
+
     soup.center
     num_pages = soup.center.find_all('a')
     new_length = len(num_pages) + 1
-
-    head_data = format_header(soup.find('table', attrs={"bgcolor":"#ffffff"}))
-    format_data_as_list.append(head_data);
-
-    for i in range(1, new_length+1):
+    
+    for i in range(2, new_length+1):
         paramsDict['page'] = i
         soup = get_html_page(url, paramsDict)
 

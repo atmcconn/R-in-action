@@ -1,0 +1,8 @@
+!! Important R commands:
+
+movies2010 <- read.table("All Movies - 2010 Domestic Grosses.csv", sep=",", header=T, quote="\"")
+
+allMovies <- read.table("All Movies Domestic Grosses - formatted.csv", sep=",", header=T, quote="\"", na.strings=c("-", "N/A"))
+
+
+newX <- substr(x, 2, nchar(x))  # Gets rid of '$' in front
