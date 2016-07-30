@@ -37,7 +37,7 @@ def scrape_data(my_table):
 
 
 def write_to_csv(a_list):
-    data_file = open("All Movies 2010 to 2014 Domestic Grosses.csv", 'w')
+    data_file = open("All Movies Domestic Grosses.csv", 'w')
     for each_list in a_list:
         writer = csv.writer(data_file)
         writer.writerows(each_list)
@@ -52,7 +52,7 @@ def get_html_page(url, parameters):
 if __name__ == "__main__":
 	url = 'http://www.boxofficemojo.com/yearly/chart/'
 	movie_list = []
-	year = [2010, 2011, 2012, 2013, 2014]
+	year = [2010, 2011, 2012, 2013, 2014, 2015]
 	paramsDict = {'yr': year[0], 'view': 'releasedate', 'view2': 'domestic'}
 
 	# soup.center contains the links to the other page lists within the year. The number of links + 1 is equal to the total number of pages I need to iterate over.

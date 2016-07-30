@@ -1,0 +1,75 @@
+###########################################################################
+###########################################################################
+I WILL NEED TO PARAPHRASE THE FOLLOWING!!!!
+
+!! IT IS IMPORTANT THAT I DO NOT COPY WORD FOR WORD TO AVOID PLAGIARISM!!!
+
+!! THIS IS ONLY TO RECORD IMPORTANT TOPICS THAT WILL NEED TO BE ADDRESSED DURING MY WRITE-UP
+! THE FOLLOWING ARE PARAGRAPHS FROM R-IN-ACTION BY ROBERT I. KABACOFF
+###########################################################################
+
+Regression analysis lives at the heart of statistics. A broad term for a set of methodologies used to predict a response variable from one or more 
+predictor variables. Regression analysis can be used to identify the explanatory variables that are related to a response variable, to describe
+ the form of the relatinoships involved, and to provide an equation for predicting the response variable from the explanatory variables. 
+ 
+To properly interpret the coeffs, I must satisfy the following assumptions:
+
+1. Normality
+The Normal Q-Q Plot - probability plot of the standardized residuals against the values that would be expected under normality. 
+The points on this graph should fall on the straight 45 degree line.
+
+2. Independence
+You can't tell if the dependent variable values are independent from these plots. Need to use the understanding of how the data was collected.
+
+
+3. Linearity
+If the dependent variable is linearly related to the independent variable, there should be NO systematic relationship between the residuals
+and the predicted (fitted). The model should capture all the SYSTEMATIC VARIANCE PRESENT IN THE DATA, LEAVING NOTHING BUT RANDOM NOISE. 
+In the Residuals vs fitted you could see clear evidence of a curved relationship which suggests that you may want to add a quadratic term to
+the regression.
+
+4. Homoscedasticity -- Constant variance
+
+first-fit <- lm(y ~ A+B+C)  A,B,C are continuous variables
+
+second-fit <- lm(y ~ A*B*C) ''
+
+third_fit <- transform (first-fit)  transform == log  ## this didn't work at all
+
+
+###########################################################################
+##
+## ANOVA
+###########################################################################
+
+## Might use lubridate, car, gplots, HH, rrcov, multicomp, effects, MASS, mvoutlier packages
+
+Nominal are variables that are categorical without implied order
+Ordinal are variables that are categorical that have order but no sense of amount or magnitude
+
+Variables:
+
+Rank				N/A
+Assumption: Rank is an imposed order completely derived from Total.Gross which is the response variable
+and thus dependent on the other variables. Therefore, it should not be used in the model.
+
+Movie.Title			Nominal, I think it's unimportant (That's not true)
+Studio				Nominal
+Total.Gross			Response (Y)
+Theaters.Total		Continuous
+Opening.Gross		Continuous
+Theaters.Opening	Continuous
+Open				Close - Open == Continuous
+Close
+Assumption: Years do not affect the Total.Gross response of a movie. The idea is that a movie's Total.Gross will not 
+change if it was released in 2010 vs. 2011.
+
+Regression models are good for predicting a quantitative response from quantitative predictor variables. But there's no reason that  we
+I can't use nominal or ordinal factors as predictors as well.
+
+Effects are primarily evaluated through F tests. If the F test is significant then I can conclude the mean for two different variables
+differed. 
+
+I skipped over all NA but did not change it's value so that I don't skew the results
+
+
